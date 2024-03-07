@@ -8,7 +8,7 @@
             <span class="text" itemprop="text">
                 {{quote.quote}}
             </span>
-            <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
+            <span>by <small class="author" itemprop="author">{{ quote.author|author }}</small>
                 <a href="/author/{{quote.author}}">(about)</a>
             </span>
             <div class="tags">
