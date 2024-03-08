@@ -18,10 +18,76 @@
     color: #3677E8;
 }
 
+.quote .tags {
+    margin-top: 10px;
+}
+
 .tag {
     padding: 2px 5px;
     border-radius: 5px;
     color: white;
     font-size: small;
     background-color: #7CA3E6;
+}
+
+.pager {
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pager {
+    padding-left: 0;
+    margin: 22px 0;
+    list-style: none;
+    text-align: center;
+}
+
+.pager li {
+    display: inline;
+}
+
+.pager .previous>a,
+.pager .previous>span {
+    float: left;
+}
+
+.pager li>a,
+.pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 15px;
+}
+
+.pager .previous>a,
+.pager .previous>span,
+.pager .next>a,
+.pager .next>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #7CA3E6; /* Цвет фона кнопок */
+    color: white; /* Цвет текста кнопок */
+    border: 1px solid #7CA3E6; /* Цвет рамки кнопок */
+    border-radius: 15px;
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer; /* Делаем курсор указателем при наведении */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Плавное изменение цвета */
+}
+
+.pager .previous.disabled>a,
+.pager .previous.disabled>span,
+.pager .next.disabled>a,
+.pager .next.disabled>span {
+    background-color: #dddddd; /* Цвет фона неактивных кнопок */
+    border-color: #dddddd; /* Цвет рамки неактивных кнопок */
+    color: #666666; /* Цвет текста неактивных кнопок */
+    cursor: not-allowed; /* Запрещаем взаимодействие с неактивными кнопками */
+}
+
+.pager .previous>a:hover,
+.pager .previous>span:hover,
+.pager .next>a:hover,
+.pager .next>span:hover {
+    background-color: #3677E8; /* Цвет фона кнопок при наведении */
+    border-color: #3677E8; /* Цвет рамки кнопок при наведении */
 }

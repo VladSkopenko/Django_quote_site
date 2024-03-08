@@ -23,12 +23,16 @@
             <ul class="pager">
 
                 <li class="previous">
-                    <a href="/page/1/"><span aria-hidden="true">←</span> Previous</a>
+                    <a class="{% if not quotes.has_previous %} disabled {% endif  %}"
+                       href="{% if quotes.has_previous %} {% url 'quotes:root_paginate' quotes.previous_page_number %} {% else %} # {% endif  %}">
+                        <span aria-hidden="true">←</span> Previous</a>
                 </li>
 
 
                 <li class="next">
-                    <a href="/page/3/">Next <span aria-hidden="true">→</span></a>
+                    <a class="{% if not quotes.has_next %} disabled {% endif  %}"
+                       href="{% if quotes.has_next %} {% url 'quotes:root_paginate' quotes.next_page_number %} {% else %} # {% endif  %}">
+                        <span aria-hidden="true">←</span> Next</a>
                 </li>
 
             </ul>
