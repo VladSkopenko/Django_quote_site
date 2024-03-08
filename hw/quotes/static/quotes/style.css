@@ -30,15 +30,20 @@
     background-color: #7CA3E6;
 }
 
+.disabled{
+    color: #333333;
+    cursor: not-allowed;
+  }
+
 .pager {
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .pager {
-    padding-left: 0;
-    margin: 22px 0;
+    padding-left: 15;
+    margin: 45px 10;
     list-style: none;
-    text-align: center;
+    text-align: right;
 }
 
 .pager li {
@@ -47,7 +52,7 @@
 
 .pager .previous>a,
 .pager .previous>span {
-    float: left;
+    text-align: left;
 }
 
 .pager li>a,
@@ -57,37 +62,9 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 15px;
+     text-decoration: none;
 }
-
-.pager .previous>a,
-.pager .previous>span,
-.pager .next>a,
-.pager .next>span {
-    display: inline-block;
-    padding: 5px 14px;
-    background-color: #7CA3E6;
-    color: white;
-    border: 1px solid #7CA3E6;
-    border-radius: 15px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-}
-
-.pager .previous.disabled>a,
-.pager .previous.disabled>span,
-.pager .next.disabled>a,
-.pager .next.disabled>span {
-    background-color: #dddddd;
-    border-color: #dddddd;
-    color: #666666;
-    cursor: not-allowed;
-}
-
-.pager .previous>a:hover,
-.pager .previous>span:hover,
-.pager .next>a:hover,
-.pager .next>span:hover {
-    background-color: #3677E8;
-    border-color: #3677E8;
+.pager .previous,
+.pager .next {
+    margin-right: 15px;
 }

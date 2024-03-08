@@ -25,14 +25,14 @@
                 <li class="previous">
                     <a class="{% if not quotes.has_previous %} disabled {% endif  %}"
                        href="{% if quotes.has_previous %} {% url 'quotes:root_paginate' quotes.previous_page_number %} {% else %} # {% endif  %}">
-                        <span aria-hidden="true">←</span> Previous</a>
+                        <span aria-hidden="true">←</span>Previous</a>
                 </li>
 
 
                 <li class="next">
                     <a class="{% if not quotes.has_next %} disabled {% endif  %}"
                        href="{% if quotes.has_next %} {% url 'quotes:root_paginate' quotes.next_page_number %} {% else %} # {% endif  %}">
-                        <span aria-hidden="true">←</span> Next</a>
+                        <span aria-hidden="true">→</span>Next</a>
                 </li>
 
             </ul>
