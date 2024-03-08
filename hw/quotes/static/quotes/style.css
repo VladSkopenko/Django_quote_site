@@ -65,29 +65,29 @@
 .pager .next>span {
     display: inline-block;
     padding: 5px 14px;
-    background-color: #7CA3E6; /* Цвет фона кнопок */
-    color: white; /* Цвет текста кнопок */
-    border: 1px solid #7CA3E6; /* Цвет рамки кнопок */
+    background-color: #7CA3E6;
+    color: white;
+    border: 1px solid #7CA3E6;
     border-radius: 15px;
-    text-decoration: none; /* Убираем подчеркивание */
-    cursor: pointer; /* Делаем курсор указателем при наведении */
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Плавное изменение цвета */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .pager .previous.disabled>a,
 .pager .previous.disabled>span,
 .pager .next.disabled>a,
 .pager .next.disabled>span {
-    background-color: #dddddd; /* Цвет фона неактивных кнопок */
-    border-color: #dddddd; /* Цвет рамки неактивных кнопок */
-    color: #666666; /* Цвет текста неактивных кнопок */
-    cursor: not-allowed; /* Запрещаем взаимодействие с неактивными кнопками */
+    background-color: #dddddd;
+    border-color: #dddddd;
+    color: #666666;
+    cursor: not-allowed;
 }
 
 .pager .previous>a:hover,
 .pager .previous>span:hover,
 .pager .next>a:hover,
 .pager .next>span:hover {
-    background-color: #3677E8; /* Цвет фона кнопок при наведении */
-    border-color: #3677E8; /* Цвет рамки кнопок при наведении */
+    background-color: #3677E8;
+    border-color: #3677E8;
 }
