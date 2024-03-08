@@ -22,3 +22,22 @@ for author in authors:
         born_location=author.get("born_location"),
         description=author.get("description"),
     )
+
+quotes = db.quotes.find()
+for quote in quotes:
+    tags = []
+    for tag in quote["tags"]:
+        t, *_ = Tag.objects.get_or_create(name=tag)
+        tags.append(t)
+
+    exist_quote = bool(len(Quote.objects.filter(quote=quote["quote"])))
+
+    if not exist_quote:
+        author = db.authors.find_one({"_id": quote["author"]})
+        aut = Author.objects.get(fullname=author["fullname"])
+        quot = Quote.objects.create(quote=quote["quote"],
+                                    author=aut,
+                                    )
+        for tag in tags:
+            quot.tags.add(tag)
+
