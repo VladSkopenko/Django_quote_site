@@ -11,3 +11,7 @@ def main(request, page=1):
     paginator = Paginator(list(quotes), per_page)
     quotes_on_page = paginator.page(page)
     return render(request, "quotes/index.html", context={"quotes": quotes_on_page})
+
+
+def regis(request):
+    return render(request, "quotes/regis.html", context={})
