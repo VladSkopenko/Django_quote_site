@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.views import View
 from .forms import RegisterForm
+from django.contrib import messages
 
 
 class RegisterView(View):
@@ -15,5 +16,8 @@ class RegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data["username"]
+            messages.success(request, f"Hello {username}, Your account created successfully")
+            return redirect(to="user:signin")
 
 
