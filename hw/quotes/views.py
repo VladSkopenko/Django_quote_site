@@ -15,3 +15,6 @@ def main(request, page=1):
 
 def regis(request):
     return render(request, "quotes/regis.html", context={})
+
+def sign_up(request):
+    return render(request, "quotes/sign.html", context={})
