@@ -7,7 +7,7 @@ from .models import Quote
 
 def main(request, page=1):
     quotes = Quote.objects.all()
-    per_page = 5
+    per_page = 10
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
 
