@@ -8,12 +8,12 @@
             <span class="text" itemprop="text">
                 {{quote.quote}}
             </span>
-            <span>by <small class="author" itemprop="author">{{ quote.author|author }}</small>
-                <a href="/author/{{quote.author}}">(about)</a>
+            <span>by <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+                <a href="/author/{{quote.author.id}}">(about)</a>
             </span>
             <div class="tags">
                 Tags:
-                {% for tag in quote.tags %}
+                {% for tag in quotes.tags %}
                 <a class="tag" href="/tag/{{tag}}">{{tag}}</a>
                 {% endfor %}
             </div>
