@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .utils import get_mongodb
 
-@login_required()
+
 def main(request, page=1):
     db = get_mongodb()
     quotes = db.quotes.find()
