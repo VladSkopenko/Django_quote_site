@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
+
 
 from django.views import View
-from .forms import RegisterForm
-from django.contrib import messages
+
+from .forms import RegisterForm, LoginForm, ProfileForm
+from .models import Profile
+
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+from django.contrib import messages
 
 
 class RegisterView(View):
@@ -30,4 +35,14 @@ class RegisterView(View):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    profile_instance, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile_instance)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users:profile')
+
+    profile_form = ProfileForm(instance=profile_instance)
+    return render(request, 'users/profile.html', {'profile_form': profile_form})
