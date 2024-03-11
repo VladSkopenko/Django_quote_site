@@ -43,9 +43,24 @@ def add_author(request):
     return render(request, 'quotes/add_author.html')
 
 
-@login_required
 def add_quote(request):
+    if request.method == 'POST':
+        quote_text = request.POST.get('quote_text')
+        author_id = request.POST.get('author')
+        tag_ids = request.POST.getlist('tags')
+
+        author = get_object_or_404(Author, id=author_id)
+
+        quote = Quote.objects.create(
+            quote=quote_text,
+            author=author,
+        )
+
+        tags = Tag.objects.filter(id__in=tag_ids)
+        quote.tags.set(tags)
+
+        return redirect('quotes:root')
 
     authors = Author.objects.all()
     tags = Tag.objects.all()
-    return render(request, 'quotes/add_quote.html', {'authors': authors, "tags":tags})
+    return render(request, 'quotes/add_quote.html', {'authors': authors, "tags": tags})
