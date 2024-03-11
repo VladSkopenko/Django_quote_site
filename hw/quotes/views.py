@@ -5,6 +5,7 @@ from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .forms import AuthorForm, QuoteForm
 from django.urls import reverse
+from django.db import transaction
 
 
 def main(request, page=1):
@@ -42,20 +43,30 @@ def add_author(request):
     return render(request, 'quotes/add_author.html')
 
 
-@login_required()
+@login_required
 def add_quote(request):
     if request.method == 'POST':
-        quote = request.POST.get("quote_text")
-        tags = request.POST.get("tags")
-        author = request.POST.get("author")
+        form = QuoteForm(request.POST)
+        if form.is_valid():
+            author = form.cleaned_data['author']
+            quote_text = form.cleaned_data['quote_text']
+            tag_names = form.cleaned_data['tags']
 
-        quot = Quote(
-            quote=quote,
-            tags=tags,
-            author=author,
-        )
-        quot.save()
+            with transaction.atomic():
+                quote = Quote.objects.create(
+                    quote_text=quote_text,
+                    author=author,
+                    user=request.user
+                )
 
-        return redirect(reverse('quotes:root', args=[author.id]))
+                for tag_name in tag_names:
+                    tag, _ = Tag.objects.get_or_create(name=tag_name)
+                    quote.tags.add(tag)
+                tag.save()
+                quote.save()
+            return redirect('quotes:root', author_id=author.id)
+        else:
+            return render(request, 'quotes/add_quote.html', {'form': form, 'authors': Author.objects.all()})
+
     authors = Author.objects.all()
     return render(request, 'quotes/add_quote.html', {'authors': authors})
