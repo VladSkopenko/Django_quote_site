@@ -14,7 +14,11 @@
     </div>
     <div class="mb-3">
         <label class="form-label" for="tags">Tags</label>
-        <input class="form-control" id="tags" name="tags" placeholder="Enter tags separated by comma" type="text">
+        <select class="form-select" id="tags" multiple name="tags" size="5">
+            {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="mb-3">
         <label class="form-label" for="quote_text">Quote</label>

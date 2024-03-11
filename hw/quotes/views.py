@@ -45,28 +45,7 @@ def add_author(request):
 
 @login_required
 def add_quote(request):
-    if request.method == 'POST':
-        form = QuoteForm(request.POST)
-        if form.is_valid():
-            author = form.cleaned_data['author']
-            quote_text = form.cleaned_data['quote_text']
-            tag_names = form.cleaned_data['tags']
-
-            with transaction.atomic():
-                quote = Quote.objects.create(
-                    quote_text=quote_text,
-                    author=author,
-                    user=request.user
-                )
-
-                for tag_name in tag_names:
-                    tag, _ = Tag.objects.get_or_create(name=tag_name)
-                    quote.tags.add(tag)
-                tag.save()
-                quote.save()
-            return redirect('quotes:root', author_id=author.id)
-        else:
-            return render(request, 'quotes/add_quote.html', {'form': form, 'authors': Author.objects.all()})
 
     authors = Author.objects.all()
-    return render(request, 'quotes/add_quote.html', {'authors': authors})
+    tags = Tag.objects.all()
+    return render(request, 'quotes/add_quote.html', {'authors': authors, "tags":tags})
