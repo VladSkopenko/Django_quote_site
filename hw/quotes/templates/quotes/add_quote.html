@@ -2,21 +2,23 @@
 
 {% block content %}
 
-<form action="{% url 'quotes:add_author' %}" method="POST">
+<form action="{% url 'quotes:add_quote' %}" method="POST">
     {% csrf_token %}
     <div class="mb-3">
-        <label class="form-label" for="fullname">Author</label>
-        <input class="form-control" id="fullname" name="fullname" placeholder="Enter fullname" type="text">
+        <label class="form-label" for="author">Author</label>
+        <select class="form-select" id="author" name="author">
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.fullname }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="mb-3">
-        <label class="form-label" for="born_date">Quote</label>
-        <input class="form-control" id="born_date" name="born_date" placeholder="Enter born date" type="text">
+        <label class="form-label" for="tags">Tags</label>
+        <input class="form-control" id="tags" name="tags" placeholder="Enter tags separated by comma" type="text">
     </div>
     <div class="mb-3">
-        <label class="form-label" for="born_location">Tags</label>
-        <input class="form-control" id="born_location" name="born_location" placeholder="Enter born location"
-               type="text">
-    </div>
+        <label class="form-label" for="quote_text">Quote</label>
+        <textarea class="form-control" id="quote_text" name="quote_text" placeholder="Enter quote text"></textarea>
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>

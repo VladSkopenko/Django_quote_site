@@ -43,5 +43,19 @@ def add_author(request):
 
 
 @login_required()
-def add_quote(requst):
-    ...
+def add_quote(request):
+    if request.method == 'POST':
+        quote = request.POST.get("quote_text")
+        tags = request.POST.get("tags")
+        author = request.POST.get("author")
+
+        quot = Quote(
+            quote=quote,
+            tags=tags,
+            author=author,
+        )
+        quot.save()
+
+        return redirect(reverse('quotes:root', args=[author.id]))
+    authors = Author.objects.all()
+    return render(request, 'quotes/add_quote.html', {'authors': authors})
