@@ -40,3 +40,8 @@ def add_author(request):
         return redirect(reverse('quotes:author_detail', args=[author.id]))
 
     return render(request, 'quotes/add_author.html')
+
+
+@login_required()
+def add_quote(requst):
+    ...
