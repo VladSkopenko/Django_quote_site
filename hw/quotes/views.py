@@ -43,6 +43,7 @@ def add_author(request):
     return render(request, 'quotes/add_author.html')
 
 
+@login_required()
 def add_quote(request):
     if request.method == 'POST':
         quote_text = request.POST.get('quote_text')
