@@ -11,7 +11,7 @@ def main(request, page=1):
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
 
-    return render(request, "quotes/index.html", context={"quotes": quotes_on_page})
+    return render(request, "quotes/index.html", context={"quotes": quotes_on_page, 'paginator': paginator})
 
 
 def author_detail(request, author_id):

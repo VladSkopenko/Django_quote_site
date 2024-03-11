@@ -13,21 +13,18 @@
             </span>
             <div class="tags">
                 Tags:
-                 {% for tag in quote.tags.all %}
+                {% for tag in quote.tags.all %}
                 <a class="tag" href="/tag/{{tag}}">{{tag.name}}</a>
                 {% endfor %}
             </div>
         </div>
         {% endfor %}
-        <nav aria-label="Page navigation example">
+        <nav>
             <ul class="pagination justify-content-center">
                 {% if quotes.has_previous %}
                 <li class="page-item">
-                    <a aria-label="Previous" class="page-link"
-                       href="{% url 'quotes:root_paginate' quotes.previous_page_number %}">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
+                    <a class="page-link"
+                       href="{% url 'quotes:root_paginate' quotes.previous_page_number %}">Previous</a>
                 </li>
                 {% endif %}
 
@@ -39,15 +36,12 @@
 
                 {% if quotes.has_next %}
                 <li class="page-item">
-                    <a aria-label="Next" class="page-link"
-                       href="{% url 'quotes:root_paginate' quotes.next_page_number %}">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    <a class="page-link" href="{% url 'quotes:root_paginate' quotes.next_page_number %}">Next</a>
                 </li>
                 {% endif %}
             </ul>
         </nav>
+
 
 
     </div>
