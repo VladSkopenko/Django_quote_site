@@ -9,7 +9,7 @@ from django.db import transaction
 
 
 def main(request, page=1):
-    quotes = Quote.objects.select_related('author').prefetch_related('tags').all()
+    quotes = Quote.objects.all().order_by('id')
     per_page = 10
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
