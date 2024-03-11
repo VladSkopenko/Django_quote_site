@@ -4,6 +4,7 @@ from .models import Author, Quote, Tag
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .forms import AuthorForm, QuoteForm
+from django.urls import reverse
 
 
 def main(request, page=1):
@@ -20,29 +21,22 @@ def author_detail(request, author_id):
     return render(request, 'quotes/author_detail.html', {'author': author})
 
 
-@login_required
+@login_required()
 def add_author(request):
-    if request.method == "POST":
-        form = AuthorForm(request.POST)
+    if request.method == 'POST':
+        fullname = request.POST.get('fullname')
+        born_date = request.POST.get('born_date')
+        born_location = request.POST.get('born_location')
+        description = request.POST.get('description')
 
-        if form.is_valid():
-            author = form.save(commit=False)
-            author.save()
+        author = Author(
+            fullname=fullname,
+            born_date=born_date,
+            born_location=born_location,
+            description=description
+        )
+        author.save()
 
-            return redirect(to="quotes:author_detail", fullname=form.cleaned_data["author_id"])
-        else:
-            return render(
-                request,
-                "quotes/add_author.html",
-                context={
-                    "form": form,
-                },
-            )
+        return redirect(reverse('quotes:author_detail', args=[author.id]))
 
-    return render(
-        request,
-        "quotes/add_author.html",
-        context={
-            "form": AuthorForm(),
-        },
-    )
+    return render(request, 'quotes/add_author.html')

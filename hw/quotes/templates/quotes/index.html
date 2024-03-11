@@ -22,6 +22,8 @@
         <nav>
             <ul class="pager">
 
+<ul class="pager">
+
                 <li class="previous">
                     <a class="{% if not quotes.has_previous %} disabled {% endif  %}"
                        href="{% if quotes.has_previous %} {% url 'quotes:root_paginate' quotes.previous_page_number %} {% else %} # {% endif  %}">

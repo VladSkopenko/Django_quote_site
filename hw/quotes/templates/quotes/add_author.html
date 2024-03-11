@@ -4,35 +4,23 @@
 
 <form method="POST" action="{% url 'quotes:add_author' %}">
     {% csrf_token %}
-    <div style="padding: 10px">
-        <label> Author name:
-            {{ form.fullname }}
-        </label>
-        <span>{{ form.errors.fullname }}</span>
+    <div class="mb-3">
+        <label class="form-label" for="fullname">Fullname</label>
+        <input class="form-control" id="fullname" name="fullname" placeholder="Enter fullname" type="text">
     </div>
-    <div style="padding: 10px">
-        <label> Author born date:
-            {{ form.born_date }}
-        </label>
-        <span>{{ form.errors.born_date }}</span>
+    <div class="mb-3">
+        <label class="form-label" for="born_date">Born date</label>
+        <input class="form-control" id="born_date" name="born_date" placeholder="Enter born date" type="text">
     </div>
-    <div style="padding: 10px">
-        <label> Author born location:
-            {{ form.born_location }}
-        </label>
-        <span>{{ form.errors.born_location }}</span>
+    <div class="mb-3">
+        <label class="form-label" for="born_location">Born location</label>
+        <input class="form-control" id="born_location" name="born_location" placeholder="Enter born location" type="text">
     </div>
-    <div style="padding: 10px">
-        <label> Author description:
-            {{ form.description }}
-        </label>
-        <span>{{ form.errors.description }}</span>
+    <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" placeholder="Enter description"></textarea>
     </div>
-
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-{% endblock %}
+    {% endblock %}
