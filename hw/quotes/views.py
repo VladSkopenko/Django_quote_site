@@ -1,11 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from .models import Author, Quote, Tag
-from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-from .forms import AuthorForm, QuoteForm
 from django.urls import reverse
-from django.db import transaction
 
 
 def main(request, page=1):
