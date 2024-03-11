@@ -13,8 +13,8 @@
             </span>
             <div class="tags">
                 Tags:
-                {% for tag in quotes.tags %}
-                <a class="tag" href="/tag/{{tag}}">{{tag}}</a>
+                 {% for tag in quote.tags.all %}
+                <a class="tag" href="/tag/{{tag}}">{{tag.name}}</a>
                 {% endfor %}
             </div>
         </div>

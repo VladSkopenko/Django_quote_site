@@ -6,7 +6,7 @@ from django.db.models import Count
 
 
 def main(request, page=1):
-    quotes = Quote.objects.order_by('id').all()
+    quotes = Quote.objects.select_related('author').prefetch_related('tags').all()
     per_page = 10
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
