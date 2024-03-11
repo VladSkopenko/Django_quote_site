@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from .models import Author, Quote, Tag
+from django.db.models import Count
 
-from .models import Quote
 
 
 def main(request, page=1):
-    quotes = Quote.objects.all()
+    quotes = Quote.objects.order_by('id').all()
     per_page = 10
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
@@ -14,3 +14,6 @@ def main(request, page=1):
     return render(request, "quotes/index.html", context={"quotes": quotes_on_page})
 
 
+def author_detail(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)
+    return render(request, 'quotes/author_detail.html', {'author': author})
