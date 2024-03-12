@@ -1,18 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search Results</h1>
-    <ul>
-        {% for quote in quotes %}
-            <li>{{ quote }}</li>
-        {% empty %}
-            <li>No quotes found.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "quotes/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        {% if quotes %}
+            {% for quote in quotes %}
+                <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+                    <span class="text" itemprop="text">
+                        {{quote.quote}}
+                    </span>
+                    <span>by <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+                        <a href="/author/{{quote.author.id}}">(about)</a>
+                    </span>
+                    <div class="tags">
+                        Tags:
+                        {% for tag in quote.tags.all %}
+                            <a class="tag" href="/tag/{{tag}}">{{tag.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No quotes found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.core.paginator import Paginator
-from .models import Author, Quote, Tag
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+
+from .models import Author, Quote, Tag
 
 
 def main(request, page=1):
@@ -63,16 +65,14 @@ def add_quote(request):
     tags = Tag.objects.all()
     return render(request, 'quotes/add_quote.html', {'authors': authors, "tags": tags})
 
-from django.http import HttpResponseNotAllowed
 
-def search_by_tag(request):
+def search(request):
     if request.method == 'GET':
         tag = request.GET.get('tag', '')
         if tag:
-            quotes = Quote.objects.filter(tags__icontains=tag)
+            quotes = Quote.objects.filter(Q(tags__name__icontains=tag) | Q(author__fullname__icontains=tag))
         else:
             quotes = Quote.objects.all()
         return render(request, 'quotes/search_results.html', {'quotes': quotes})
     else:
-        return HttpResponseNotAllowed(['GET'])
-
+        return render(request, 'quotes/search_results.html')

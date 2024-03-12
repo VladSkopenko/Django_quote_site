@@ -21,8 +21,11 @@
         </div>
         <div class="col-md-4">
             <div class="input-group">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search by tag" aria-label="Search" name="tag">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form action="{% url 'quotes:search' %}" class="form-inline my-2 my-lg-0" method="GET">
+                    <input aria-label="Search" class="form-control mr-sm-2" name="tag" placeholder="Search by tag"
+                           type="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
             <p>
                 {% if user.is_authenticated %}

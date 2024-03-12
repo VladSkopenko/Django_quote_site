@@ -1,0 +1,9 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+    <h1>Search by Tag</h1>
+    <form action="{% url 'search' %}" method="GET">
+        <input type="text" name="tag" placeholder="Enter tag">
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}
