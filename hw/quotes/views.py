@@ -62,3 +62,13 @@ def add_quote(request):
     authors = Author.objects.all()
     tags = Tag.objects.all()
     return render(request, 'quotes/add_quote.html', {'authors': authors, "tags": tags})
+
+def search_by_tag(request):
+    if request.method == 'GET':
+        tag = request.GET.get('tag')
+
+        # Выполняем поиск цитат по тегу
+        quotes = Quote.objects.filter(tags__icontains=tag)
+
+        # Отображаем HTML-шаблон с результатами поиска
+        return render(request, 'search_by_tag.html', {'quotes': quotes})
