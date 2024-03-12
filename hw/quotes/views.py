@@ -63,12 +63,16 @@ def add_quote(request):
     tags = Tag.objects.all()
     return render(request, 'quotes/add_quote.html', {'authors': authors, "tags": tags})
 
+from django.http import HttpResponseNotAllowed
+
 def search_by_tag(request):
     if request.method == 'GET':
-        tag = request.GET.get('tag')
+        tag = request.GET.get('tag', '')
+        if tag:
+            quotes = Quote.objects.filter(tags__icontains=tag)
+        else:
+            quotes = Quote.objects.all()
+        return render(request, 'quotes/search_results.html', {'quotes': quotes})
+    else:
+        return HttpResponseNotAllowed(['GET'])
 
-        # Выполняем поиск цитат по тегу
-        quotes = Quote.objects.filter(tags__icontains=tag)
-
-        # Отображаем HTML-шаблон с результатами поиска
-        return render(request, 'search_by_tag.html', {'quotes': quotes})
