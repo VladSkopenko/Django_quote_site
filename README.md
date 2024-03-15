@@ -17,3 +17,5 @@ py manage.py runserver
 Посилання на сайт:
 
  http://127.0.0.1:8000/
+
+This is a site with quotes, which has registration, profile and various functionality
