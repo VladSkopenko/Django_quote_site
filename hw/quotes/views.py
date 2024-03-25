@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-
+from django.db.models import Count
 from .models import Author, Quote, Tag
 
 
@@ -76,3 +76,18 @@ def search(request):
         return render(request, 'quotes/search_results.html', {'quotes': quotes})
     else:
         return render(request, 'quotes/search_results.html')
+
+
+def quotes_by_tag(request, tag_id, page=1):
+    tag = Tag.objects.get(pk=tag_id)
+    quotes = Quote.objects.filter(tags=tag)
+
+    per_page = 10
+    paginator = Paginator(list(quotes), per_page)
+    quotes_on_page = paginator.page(page)
+
+    # Запит до бази даних, щоб підрахувати кількість цитат для кожного тега
+    top_tags = Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
+
+    return render(request, 'quotes/quotes_by_tag.html',
+                  {'tag': tag, 'quotes': quotes_on_page, 'paginator': paginator, 'top_tags': top_tags})
