@@ -13,5 +13,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('quotes-by-tag/<int:tag_id>/', views.quotes_by_tag, name='quotes_by_tag'),
     path('quotes-by-tag/<int:tag_id>/<int:page>/', views.quotes_by_tag, name='quotes_by_tag_paginate'),
+    path('tag/<int:tag_id>/', views.detail_tag, name='tag_detail'),
 ]
 

@@ -21,6 +21,11 @@ def author_detail(request, author_id):
     return render(request, 'quotes/author_detail.html', {'author': author})
 
 
+def detail_tag(request, tag_id):
+    tag = get_object_or_404(Tag, pk=tag_id)
+    return render(request, "quotes/tag_detail.html", context={"tag": tag})
+
+
 @login_required()
 def add_author(request):
     if request.method == 'POST':
