@@ -1,4 +1,3 @@
-Домашнє завдання #10
 Запуск Docker-контейнер, щоб створити сервер PostgreSQL:
 
 docker run --name hw_project-postgres -p 5432:5432 -e POSTGRES_PASSWORD=987654321 -d postgres
