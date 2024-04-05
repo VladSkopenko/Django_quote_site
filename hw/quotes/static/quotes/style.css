@@ -68,3 +68,7 @@
 .pager .next {
     margin-right: 15px;
 }
+
+body {
+    background-color: #f5f5dc;
+}
