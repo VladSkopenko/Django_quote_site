@@ -1,6 +1,6 @@
 import os
-import django
 
+import django
 from pymongo import MongoClient
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hw.settings")
@@ -8,9 +8,9 @@ django.setup()
 
 from quotes.models import Quote, Tag, Author
 
-# py -m utils.custom_migra
+# py -m utils.migra
 
-client = MongoClient('mongodb+srv://vladgo:1111@goitlearn.x6ks5fo.mongodb.net')
+client = MongoClient("mongodb+srv://vladgo:1111@goitlearn.x6ks5fo.mongodb.net")
 
 db = client.hw
 
@@ -35,9 +35,9 @@ for quote in quotes:
     if not exist_quote:
         author = db.authors.find_one({"_id": quote["author"]})
         aut = Author.objects.get(fullname=author["fullname"])
-        quot = Quote.objects.create(quote=quote["quote"],
-                                    author=aut,
-                                    )
+        quot = Quote.objects.create(
+            quote=quote["quote"],
+            author=aut,
+        )
         for tag in tags:
             quot.tags.add(tag)
-

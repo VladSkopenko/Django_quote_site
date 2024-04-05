@@ -1,17 +1,15 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
-
 from django.views import View
 
-from .forms import RegisterForm, LoginForm, ProfileForm
+from .forms import ProfileForm
+from .forms import RegisterForm
 from .models import Profile
-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
-from django.contrib import messages
 
 
 class RegisterView(View):
@@ -31,7 +29,9 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data["username"]
-            messages.success(request, f"Hello {username}, Your account created successfully")
+            messages.success(
+                request, f"Hello {username}, Your account created successfully"
+            )
             return redirect(to="users:login")
         return render(request, self.template_name, context={"form": form})
 
@@ -40,21 +40,25 @@ class RegisterView(View):
 def profile(request):
     profile_instance, created = Profile.objects.get_or_create(user=request.user)
 
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile_instance)
+    if request.method == "POST":
+        profile_form = ProfileForm(
+            request.POST, request.FILES, instance=profile_instance
+        )
         if profile_form.is_valid():
             profile_form.save()
-            messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users:profile')
+            messages.success(request, "Your profile is updated successfully")
+            return redirect(to="users:profile")
 
     profile_form = ProfileForm(instance=profile_instance)
-    return render(request, 'users/profile.html', {'profile_form': profile_form})
+    return render(request, "users/profile.html", {"profile_form": profile_form})
 
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'users/password_reset.html'
-    email_template_name = 'users/password_reset_email.html'
-    html_email_template_name = 'users/password_reset_email.html'
-    success_url = reverse_lazy('users:password_reset_done')
-    success_message = "An email with instructions to reset your password has been sent to %(email)s."
-    subject_template_name = 'users/password_reset_subject.txt'
+    template_name = "users/password_reset.html"
+    email_template_name = "users/password_reset_email.html"
+    html_email_template_name = "users/password_reset_email.html"
+    success_url = reverse_lazy("users:password_reset_done")
+    success_message = (
+        "An email with instructions to reset your password has been sent to %(email)s."
+    )
+    subject_template_name = "users/password_reset_subject.txt"
