@@ -6,7 +6,7 @@ from .models import Profile
 
 
 class RegisterForm(UserCreationForm):
-    username = CharField(max_length=19, required=True, widget=TextInput(attrs={"class": "form-control", }))
+    username = CharField(max_length=30, required=True, widget=TextInput(attrs={"class": "form-control", }))
     email = EmailField(max_length=30, required=True, widget=EmailInput(attrs={"class": "form-control", }))
     password1 = CharField(required=True, widget=PasswordInput(attrs={"class": "form-control", }))
     password2 = CharField(required=True, widget=PasswordInput(attrs={"class": "form-control", }))
@@ -17,7 +17,7 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = CharField(max_length=19, required=True, widget=TextInput(attrs={"class": "form-control", }))
+    username = CharField(max_length=30, required=True, widget=TextInput(attrs={"class": "form-control", }))
     password = CharField(required=True, widget=PasswordInput(attrs={"class": "form-control", }))
 
     class Meta:
