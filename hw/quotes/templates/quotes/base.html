@@ -29,7 +29,10 @@
             </div>
             <p>
                 {% if user.is_authenticated %}
-                <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary mt-3" type="submit">Logout</button>
+            </form>
                 <a href="{% url 'users:profile' %}" class="btn btn-primary">Profile</a>
                 <a href="{% url 'quotes:add_author' %}" class="btn btn-primary">AddAuthor</a>
                 <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary">AddQuote</a>

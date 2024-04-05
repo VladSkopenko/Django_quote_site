@@ -16,7 +16,6 @@ def main(request, page=1):
     return render(request, "quotes/index.html", context={"quotes": quotes_on_page, 'paginator': paginator})
 
 
-
 def author_detail(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'quotes/author_detail.html', {'author': author})
