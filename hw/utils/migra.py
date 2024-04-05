@@ -1,8 +1,10 @@
 import os
 
 import django
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
+load_dotenv()
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hw.settings")
 django.setup()
 
@@ -10,8 +12,9 @@ from quotes.models import Quote, Tag, Author
 
 # py -m utils.migra
 
-client = MongoClient("mongodb+srv://vladgo:1111@goitlearn.x6ks5fo.mongodb.net")
+mongo_uri = os.getenv("MONGO_URI")
 
+client = MongoClient(mongo_uri)
 db = client.hw
 
 authors = db.authors.find()
