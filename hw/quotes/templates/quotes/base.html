@@ -32,21 +32,20 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <p>
+            <div aria-label="User actions" class="btn-group" role="group">
                 {% if user.is_authenticated %}
-            <form action="{% url 'users:logout' %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-primary mt-3" type="submit">Logout</button>
-            </form>
+                <form action="{% url 'users:logout' %}" class="d-inline" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">Logout</button>
+                </form>
                 <a href="{% url 'users:profile' %}" class="btn btn-primary">Profile</a>
-                <a href="{% url 'quotes:add_author' %}" class="btn btn-primary">AddAuthor</a>
-                <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary">AddQuote</a>
-
+                <a class="btn btn-primary" href="{% url 'quotes:add_author' %}">Add Author</a>
+                <a class="btn btn-primary" href="{% url 'quotes:add_quote' %}">Add Quote</a>
                 {% else %}
                 <a href="{% url 'users:register' %}" class="btn btn-primary">Register</a>
                 <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
                 {% endif %}
-            </p>
+            </div>
         </div>
     </div>
 
