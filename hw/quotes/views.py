@@ -1,29 +1,40 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
 from django.db.models import Count
-from .models import Author, Quote, Tag
+from django.db.models import Q
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.urls import reverse
 
+from .models import Author
+from .models import Quote
+from .models import Tag
+
+
+def get_top_10_tags():
+    top_10_tags = Tag.objects.annotate(amount_quotes=Count("quote")).order_by("-amount_quotes")[:10]
+    font_sizes = list(range(28, 9, -2))
+    for i, tag in enumerate(top_10_tags):
+        tag.font_size = font_sizes[i]
+    return top_10_tags
 
 def main(request, page=1):
     quotes = Quote.objects.all().order_by('id')
+    top_10_tags = get_top_10_tags()
     per_page = 10
     paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
 
-    return render(request, "quotes/index.html", context={"quotes": quotes_on_page, 'paginator': paginator})
+    return render(request, "quotes/index.html", context={"quotes": quotes_on_page,
+                                                         "top_tags": top_10_tags,
+                                                         'paginator': paginator})
 
 
 def author_detail(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'quotes/author_detail.html', {'author': author})
 
-
-def detail_tag(request, tag_id):
-    tag = get_object_or_404(Tag, pk=tag_id)
-    return render(request, "quotes/tag_detail.html", context={"tag": tag})
 
 
 @login_required()
@@ -83,16 +94,13 @@ def search(request):
         return render(request, 'quotes/search_results.html')
 
 
-def quotes_by_tag(request, tag_id, page=1):
-    tag = Tag.objects.get(pk=tag_id)
-    quotes = Quote.objects.filter(tags=tag)
+
+def show_quotes(request, tag_name, page=1):
+    quotes = Quote.objects.filter(tags__name=tag_name)
 
     per_page = 10
     paginator = Paginator(list(quotes), per_page)
     quotes_on_page = paginator.page(page)
 
-    # Запит до бази даних, щоб підрахувати кількість цитат для кожного тега
-    top_tags = Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
-
-    return render(request, 'quotes/quotes_by_tag.html',
-                  {'tag': tag, 'quotes': quotes_on_page, 'paginator': paginator, 'top_tags': top_tags})
+    context = {"quotes": quotes_on_page, "tag": tag_name}
+    return render(request, "quotes/show_quotes.html", context)

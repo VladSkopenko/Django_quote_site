@@ -43,19 +43,15 @@
         </nav>
     </div>
 
-    <div class="col-md-4 mt-3">
-        <h2>Top Ten tags:</h2>
-        {% for tag in top_tags%}
-        <div class="tags-box mt-3">
-            <span class="tag-item">
-                <a class="tag" href="{% url 'quotes:quotes_by_tag' tag_id=tag.id %}"
-                   style="font-size: calc(30px - {{ forloop.counter }} * 1.75px)">{{ tag.name }} - {{ tag.num_quotes }}</a>
-            </span>
-        </div>
+    <div class="col-md-4 tags-box">
+
+        <h2>Top Ten tags</h2>
+        {% for tag in top_tags %}
+        <span class="tag-item">
+            <a class="tag" style="font-size: {{tag.font_size}}px" href="/tag/{{tag.name}}">{{tag.name}}</a>
+        </span>
         {% endfor %}
+
     </div>
-
 </div>
-
-
-{% endblock %}
+{% endblock content %}
