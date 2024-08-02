@@ -44,3 +44,4 @@ for quote in quotes:
         )
         for tag in tags:
             quot.tags.add(tag)
+

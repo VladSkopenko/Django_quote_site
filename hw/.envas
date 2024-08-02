@@ -1,0 +1,15 @@
+SECRET_KEY="m8p&9c0%()%f8=%-lxkus(=cfy8xt0(@d!rnsv^e^^oxmg9a=#"
+DATABASE_NAME=hw_shy_wind_5548
+DATABASE_USER=hw_shy_wind_5548
+DATABASE_PASSWORD=6TsJO50iIImP2ln
+DATABASE_HOST=postgresfly.flycast
+DATABASE_PORT=5432
+DATABASE_URL=postgres://postgres:7AKXRPAwcVnR0zB@postgresfly.flycast:5432
+EMAIL_HOST=smtp.meta.ua
+EMAIL_PORT=465
+EMAIL_HOST_USER=skopil@meta.ua
+EMAIL_HOST_PASSWORD=Mypasswordformeta1
+MONGO_USER=vladgo
+MONGO_PASSWORD=1111
+MONGO_DOMEN=goitlearn
+MONGO_URI=mongodb+srv://vladgo:1111@$goitlearn.x6ks5fo.mongodb.net

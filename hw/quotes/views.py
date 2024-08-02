@@ -14,7 +14,7 @@ from .models import Tag
 
 def get_top_10_tags():
     top_10_tags = Tag.objects.annotate(amount_quotes=Count("quote")).order_by("-amount_quotes")[:10]
-    font_sizes = list(range(28, 9, -2))
+    font_sizes = list(range(28, 9, -1))
     for i, tag in enumerate(top_10_tags):
         tag.font_size = font_sizes[i]
     return top_10_tags
@@ -104,3 +104,5 @@ def show_quotes(request, tag_name, page=1):
 
     context = {"quotes": quotes_on_page, "tag": tag_name}
     return render(request, "quotes/show_quotes.html", context)
+
+
