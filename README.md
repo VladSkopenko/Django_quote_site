@@ -16,4 +16,4 @@
     Запустіть застосунок:
     ```bash
    py manage.py runserver 
-DEPLOY: https://django-delicate-glitter-6065.fly.dev/
+DEPLOY:[ https://django-delicate-glitter-6065.fly.dev/](https://vladislav-skopenko-site-maker.fly.dev/)
