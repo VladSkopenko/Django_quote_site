@@ -58,3 +58,20 @@
 .pagination .page-link:hover {
     background-color: #0056b3;
 }
+
+.forgot-password-btn {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.forgot-password-btn:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.forgot-password-btn:focus {
+    outline: none;
+}
