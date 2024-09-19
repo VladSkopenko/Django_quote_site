@@ -97,12 +97,14 @@ def search(request):
 
 def show_quotes(request, tag_name, page=1):
     quotes = Quote.objects.filter(tags__name=tag_name)
-
+    top_10_tags = get_top_10_tags()
     per_page = 10
-    paginator = Paginator(list(quotes), per_page)
+    paginator = Paginator(quotes, per_page)
     quotes_on_page = paginator.page(page)
 
-    context = {"quotes": quotes_on_page, "tag": tag_name}
-    return render(request, "quotes/show_quotes.html", context)
+    return render(request, "quotes/index.html", context={"quotes": quotes_on_page,
+                                                         "top_tags": top_10_tags,
+                                                         'paginator': paginator})
+
 
 

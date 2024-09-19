@@ -1,7 +1,6 @@
 from pathlib import Path
 import environ
-import dj_database_url
-import os
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -18,7 +17,9 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_Trusted_ORIGINs = ["*"]
+CSRF_TRUSTED_ORIGINS = [
+    'https://django-delicate-glitter-6065.fly.dev',
+]
 
 # Application definition
 

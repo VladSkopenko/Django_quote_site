@@ -1,16 +1,13 @@
-# fly.toml app configuration file generated for django-delicate-glitter-6065 on 2024-08-02T22:58:26+03:00
+# fly.toml app configuration file generated for vladislav-skopenko-site-maker on 2024-08-03T11:32:20+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'django-delicate-glitter-6065'
-primary_region = 'jnb'
-console_command = '/hw/manage.py shell'
+app = 'vladislav-skopenko-site-maker'
+primary_region = 'waw'
+console_command = '/code/manage.py shell'
 
 [build]
-
-[deploy]
-  #release_command = 'python manage.py migrate --noinput'
 
 [env]
   PORT = '8000'
@@ -24,9 +21,7 @@ console_command = '/hw/manage.py shell'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'
 
 [[statics]]
   guest_path = '/code/static'
