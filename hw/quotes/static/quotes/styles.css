@@ -30,15 +30,15 @@
 }
 
 .tag {
-    padding: 5px 10px; /* Увеличиваем отступы для лучшей видимости */
-    border-radius: 15px; /* Закругленные углы для тегов */
-    color: #ffffff; /* Белый цвет текста для контраста */
-    font-size: 0.9em; /* Уменьшаем размер шрифта для лучшего отображения */
-    background-color: #007bff; /* Синий фон для тегов */
-    text-decoration: none; /* Убираем подчеркивание ссылок */
-    display: inline-block; /* Отображение тегов в строку */
-    margin: 2px; /* Отступ между тегами */
-    transition: background-color 0.3s; /* Плавное изменение цвета фона при наведении */
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 0.9em;
+    background-color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px;
+    transition: background-color 0.3s;
 }
 
 .tag:hover {
