@@ -1,6 +1,6 @@
 from pathlib import Path
-import environ
 
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -69,6 +69,7 @@ WSGI_APPLICATION = "hw.wsgi.application"
 
 # DATABASES = {
 #     'default': {
+
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': os.getenv('DATABASE_NAME'),
 #         'USER': os.getenv('DATABASE_USER'),
@@ -79,7 +80,7 @@ WSGI_APPLICATION = "hw.wsgi.application"
 # }
 
 
-#
+
 
 DATABASES = {
     'default': {
@@ -87,6 +88,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASSWORD'),
+#         'HOST': env('DATABASE_HOST'),
+#         'PORT': env('DATABASE_PORT'),
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

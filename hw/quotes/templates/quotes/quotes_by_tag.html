@@ -1,0 +1,67 @@
+{% extends 'quotes/base.html' %}
+<!--{% load extract %}-->
+{% block content %}
+
+<h3>Viewing tag: {{ tag.name }}</h3>
+<div class="row">
+    <div class="col-md-8">
+        {% for quote in quotes %}
+        <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">
+            {{ quote.quote }}
+        </span>
+            <span>by <small class="author" itemprop="author">{{ quote.author.fullname }}</small>
+        <a href="{% url 'quotes:author_detail' author_id=quote.author.id %}">(about)</a>
+        </span>
+            <div class="tags">
+                Tags:
+                {% for tag in quote.tags.all %}
+                <a class="tag" href="{% url 'quotes:quotes_by_tag' tag_id=tag.id %}">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% endfor %}
+        <nav>
+
+            <ul class="pagination justify-content-center">
+
+                {% if quotes.has_previous %}
+                <li class="page-item">
+                    <a class="page-link"
+                       href="{% url 'quotes:quotes_by_tag_paginate' tag_id=tag.id page=quotes.previous_page_number %}">Previous</a>
+                </li>
+                {% endif %}
+
+                {% for page_num in paginator.page_range %}
+                <li class="page-item {% if page_num == quotes.number %}active{% endif %}">
+                    <a class="page-link" href="{% url 'quotes:quotes_by_tag_paginate' tag_id=tag.id page=page_num %}">{{ page_num }}</a>
+                </li>
+                {% endfor %}
+
+                {% if quotes.has_next %}
+                <li class="page-item">
+                    <a class="page-link"
+                       href="{% url 'quotes:quotes_by_tag_paginate' tag_id=tag.id page=quotes.next_page_number %}">Next</a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+        </nav>
+    </div>
+        <div class="col-md-4 mt-3">
+            <h2>Top Ten tags:</h2>
+            {% for tag in top_tags %}
+            <div class="tags-box mt-3">
+                <span class="tag-item">
+                    <a class="tag" style="font-size: calc(30px - {{ forloop.counter }} * 1.75px)"
+                       href="{% url 'quotes:quotes_by_tag' tag_id=tag.id %}">{{ tag.name }} - {{ tag.num_quotes }}</a>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+
+
+{% endblock %}

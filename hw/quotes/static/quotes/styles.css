@@ -1,0 +1,77 @@
+.quote {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quote:hover {
+    transform: translateY(-5px); /
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.quote span.text {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.25em;
+    font-style: italic;
+}
+
+.quote small.author {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.quote .tags {
+    margin-top: 10px;
+}
+
+.tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 0.9em;
+    background-color: #007bff;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px;
+    transition: background-color 0.3s;
+}
+
+.tag:hover {
+    background-color: #0056b3;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    border-radius: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.pagination .page-link:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password-btn {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.forgot-password-btn:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.forgot-password-btn:focus {
+    outline: none;
+}
