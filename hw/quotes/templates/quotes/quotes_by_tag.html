@@ -50,17 +50,6 @@
 
         </nav>
     </div>
-        <div class="col-md-4 mt-3">
-            <h2>Top Ten tags:</h2>
-            {% for tag in top_tags %}
-            <div class="tags-box mt-3">
-                <span class="tag-item">
-                    <a class="tag" style="font-size: calc(30px - {{ forloop.counter }} * 1.75px)"
-                       href="{% url 'quotes:quotes_by_tag' tag_id=tag.id %}">{{ tag.name }} - {{ tag.num_quotes }}</a>
-                </span>
-            </div>
-            {% endfor %}
-        </div>
 </div>
 
 
