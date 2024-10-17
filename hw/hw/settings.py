@@ -14,9 +14,9 @@ environ.Env.read_env(env_file=BASE_DIR / '.env', encoding='utf-8')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['vladislav-skopenko-site-maker.fly.dev', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = [
     'https://django-delicate-glitter-6065.fly.dev',
 ]
